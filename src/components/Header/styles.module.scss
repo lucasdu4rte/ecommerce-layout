@@ -1,0 +1,168 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 80px;
+  width: 100%;
+
+  padding: 1rem 1rem;
+
+  @media screen and (max-width: 720px) {
+    height: 100%;
+    padding: 1rem;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 40px;
+  align-items: center;
+
+  width: 100%;
+
+  @media (min-width: 1280px) {
+    width: 1280px;
+  }
+
+  @media screen and (max-width: 720px) {
+    display: none;
+  }
+}
+
+.containerMobile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > div:first-child {
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 720px) {
+    display: none;
+  }
+}
+
+.inline{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+}
+
+.logoContainer {
+  position: relative;
+  height: 40px;
+  width: 180px;
+
+  @media screen and (max-width: 720px) {
+    height: 29px;
+    width: 130px;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  width: 100%;
+  height: 2.1rem;
+  position: relative;
+  border: none;
+  border-bottom: 1px solid #7A7A7A;
+
+  padding-right: 1.5rem;
+}
+
+.searchInput {
+  position: relative;
+  appearance: none;
+  border: none;
+  outline: none;
+
+  width: 100%;
+  min-width: 0px;
+  height: 2rem;
+
+  font-size: 1.1rem;
+  font-weight: 400;
+
+  &::placeholder {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #7A7A7A;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+
+  height: 2rem;
+  width: 2rem;
+
+  pointer-events: none;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchIconSvg {
+  display: inline-block;
+  line-height: 1em;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.navContainer {
+  list-style: none;
+  text-align: end;
+
+  li {
+    display: inline-block;
+
+    padding: 0px 1.1rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: all 0.3s ease 0s;
+
+      span {
+        margin-left: 5px;
+        color: #7A7A7A;
+      }
+
+      &:hover {
+        color: #707070;
+      }
+    }
+  }
+}
+
+.badge {
+  display: inline-block;
+
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+
+  background: #F8475F;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  margin-left: 5px;
+}
