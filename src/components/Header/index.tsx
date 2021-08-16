@@ -4,10 +4,12 @@ import { FaRegUser } from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { GoSearch } from "react-icons/go";
 import { MdMenu } from "react-icons/md";
+import { useCart } from "react-use-cart";
 
 import styles from "./styles.module.scss";
 
 export const Header = () => {
+  const { totalUniqueItems } = useCart()
   return (
     <header>
       <div className={styles.navbar}>
@@ -49,7 +51,7 @@ export const Header = () => {
                 <Link href="/" passHref>
                   <a>
                     <HiOutlineShoppingCart size="22px" />
-                    <div className={styles.badge}>0</div>
+                    <div className={styles.badge}>{totalUniqueItems}</div>
                   </a>
                 </Link>
               </li>
@@ -75,7 +77,7 @@ export const Header = () => {
               <a>
                 <button type="button" className={styles.cartButton}>
                   <HiOutlineShoppingCart size="22px" />
-                  <div className={styles.badge}>0</div>
+                  <div className={styles.badge}>{totalUniqueItems}</div>
                 </button>
               </a>
             </Link>

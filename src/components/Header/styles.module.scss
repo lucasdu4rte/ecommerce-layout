@@ -153,7 +153,9 @@
 }
 
 .badge {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-size: 0.7rem;
   text-align: center;
@@ -162,7 +164,7 @@
 
   background: #F8475F;
   border-radius: 50%;
-  height: 14px;
-  width: 14px;
+  height: 17px;
+  width: 17px;
   margin-left: 5px;
 }

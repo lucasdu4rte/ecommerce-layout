@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { MdStar, MdStarBorder } from "react-icons/md";
+import { useCart } from "react-use-cart";
+
+import { IProductResponse } from "../../types/Product";
 
 import styles from "./styles.module.scss";
 
@@ -10,7 +13,8 @@ type ProductProps = {
   basePrice?: string | null;
   price: string;
   creditPrice?: string | null;
-}
+  originalData: IProductResponse;
+};
 
 const Product = ({
   image,
@@ -19,7 +23,10 @@ const Product = ({
   basePrice,
   price,
   creditPrice,
+  originalData,
 }: ProductProps) => {
+  const { addItem } = useCart();
+
   return (
     <div className={styles.productContainer}>
       {basePrice && <div className={styles.ribbon}>OFF</div>}
@@ -48,9 +55,19 @@ const Product = ({
       </div>
       <div className={styles.basePrice}>{basePrice && `de ${basePrice}`}</div>
       <div className={styles.price}>por {price}</div>
-      <div className={styles.creditPrice}>{creditPrice && `ou em ${creditPrice}`}</div>
+      <div className={styles.creditPrice}>
+        {creditPrice && `ou em ${creditPrice}`}
+      </div>
       <div>
-        <button className={styles.button}>COMPRAR</button>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() =>
+            addItem({ id: String(originalData.productId), ...originalData })
+          }
+        >
+          COMPRAR
+        </button>
       </div>
     </div>
   );
