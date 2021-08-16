@@ -1,11 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper/core";
 
 import styles from "./styles.module.scss";
 import Product from "../../../Product";
 import { products } from "../../../../utils/data";
-
-SwiperCore.use([Navigation]);
 
 const BestSellers: React.FC = () => {
   return (
@@ -15,21 +12,38 @@ const BestSellers: React.FC = () => {
         <div className={styles.divider} />
         <div className={styles.swiperContainer}>
           <Swiper
-            slidesPerView={1}
+            slidesPerView={2}
             spaceBetween={10}
-            // navigation
-            pagination={{
-              clickable: true,
-            }}
-
+            width={360}
             breakpoints={{
-              0: {
+              320: {
                 slidesPerView: 2,
                 spaceBetween: 20,
+                width: 320
               },
               768: {
+                width: 768,
+                slidesPerView: 3,
+                spaceBetween: 40,
+                pagination: true,
+              },
+              1024: {
+                width: 1024,
                 slidesPerView: 4,
                 spaceBetween: 40,
+                pagination: true,
+              },
+              1080: {
+                width: 1080,
+                slidesPerView: 4,
+                spaceBetween: 40,
+                pagination: true,
+              },
+              1280: {
+                width: 1280,
+                slidesPerView: 4,
+                spaceBetween: 40,
+                pagination: true,
               },
             }}
             className="mySwiper"
