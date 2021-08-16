@@ -2,9 +2,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import styles from "./styles.module.scss";
 import Product from "../../../Product";
-import { products } from "../../../../utils/data";
+import { IProduct } from "../../../../types/Product";
 
-const BestSellers: React.FC = () => {
+type BestSellersProps = {
+  products: IProduct[];
+};
+
+const BestSellers = ({ products }: BestSellersProps) => {
   return (
     <section>
       <div className={styles.container}>
@@ -19,7 +23,7 @@ const BestSellers: React.FC = () => {
               320: {
                 slidesPerView: 2,
                 spaceBetween: 20,
-                width: 320
+                width: 320,
               },
               768: {
                 width: 768,
@@ -49,7 +53,7 @@ const BestSellers: React.FC = () => {
             className="mySwiper"
           >
             {products.map((product) => (
-              <SwiperSlide key={product.title}>
+              <SwiperSlide key={product.id}>
                 <Product
                   image={product.image}
                   price={product.price}
@@ -57,6 +61,7 @@ const BestSellers: React.FC = () => {
                   stars={product.stars}
                   basePrice={product.basePrice}
                   creditPrice={product.creditPrice}
+                  originalData={product.originalData}
                 />
               </SwiperSlide>
             ))}

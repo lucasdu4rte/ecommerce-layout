@@ -1,15 +1,23 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import axios from "axios";
 
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Banner from "../components/Home/sections/Banner";
 import BestSellers from "../components/Home/sections/BestSellers";
 import Newsletters from "../components/Home/sections/Newsletters";
+import { IProductResponse, IProduct } from "../types/Product";
 
 import styles from "../styles/Home.module.scss";
+import { strangerThings } from "../utils/strangerThings";
+import { formatToCurrency } from "../utils/formatToCurrency";
 
-const Home: NextPage = () => {
+type HomeProps = {
+  products: IProduct[];
+};
+
+const Home = ({ products }: HomeProps): JSX.Element => {
   return (
     <>
       <Head>
@@ -24,7 +32,7 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <Banner />
 
-          <BestSellers />
+          <BestSellers products={products} />
 
           <Newsletters />
         </main>
@@ -33,6 +41,31 @@ const Home: NextPage = () => {
       <Footer />
     </>
   );
+};
+
+Home.getInitialProps = async () => {
+  const { data } = await axios.get<IProductResponse[]>(
+    "https://corebiz-test.herokuapp.com/api/v1/products"
+  );
+
+  const products = data.map((product) => {
+    return {
+      originalData: product,
+      id: product.productId,
+      image: product.imageUrl,
+      title: product.productName,
+      stars: product.stars,
+      basePrice:
+        product.listPrice &&
+        formatToCurrency(strangerThings(product.listPrice)),
+      price: formatToCurrency(strangerThings(product.price)),
+      creditPrice: product.installments?.map(({ quantity, value }) => {
+        return `${quantity}x de ${formatToCurrency(strangerThings(value))}`;
+      }).join("\n"),
+    };
+  });
+
+  return { products };
 };
 
 export default Home;
